@@ -27,10 +27,13 @@ def main():
         # update screen
         screen.fill("black")
 
-        # draw player
+        # player draw to screen
         player.draw(screen)
 
-        # update time
+        # player input
+        player.update(time_delta)
+
+        # update content on screen and time
         pygame.display.flip()
         time_delta = time.tick(60) / 1000
 
