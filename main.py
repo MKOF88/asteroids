@@ -16,8 +16,17 @@ def main():
     time = pygame.time.Clock()
     time_delta = 0
 
+    # prepare update groups
+    updateable = pygame.sprite.Group()
+    drawable = pygame.sprite.Group()
+
+    Player.containers = (updateable, drawable) 
+
     # prepare the player
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2) # spawn in middle of window
+    player2 = Player(SCREEN_WIDTH / 3, SCREEN_HEIGHT / 2) # spawn in middle of window
+
+
 
     while True:
         for event in pygame.event.get():
@@ -27,11 +36,13 @@ def main():
         # update screen
         screen.fill("black")
 
-        # player draw to screen
-        player.draw(screen)
+        # update stuff
+        for object in updateable:
+            object.update(time_delta)
 
-        # player input
-        player.update(time_delta)
+        # draw stuff
+        for object in drawable:
+            object.draw(screen)
 
         # update content on screen and time
         pygame.display.flip()
