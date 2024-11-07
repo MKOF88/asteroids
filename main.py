@@ -1,3 +1,4 @@
+import sys
 import pygame
 
 from constants import *
@@ -44,6 +45,12 @@ def main():
         # update stuff
         for object in updateable:
             object.update(time_delta)
+
+        # analyse collisions
+        for asteroid in asteroids:
+            if asteroid.collides_with(player):
+                print("Game over!")
+                sys.exit()
 
         # draw stuff
         for object in drawable:
