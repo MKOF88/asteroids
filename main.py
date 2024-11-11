@@ -59,7 +59,8 @@ def main():
             # handle bullet collision
             for shot in shots:
                 if shot.collides_with(asteroid):
-                    asteroid.kill()
+                    shot.kill() # pygame function to remove object
+                    asteroid.split()
 
         # draw stuff
         for object in drawable:
